@@ -1,2 +1,1 @@
-# koa-vue-view
-koa渲染vue
+# koa渲染vue
