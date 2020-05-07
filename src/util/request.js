@@ -17,7 +17,7 @@ service.interceptors.response.use(config => {
   return Promise.reject(err)
 })
 
-function connector (method, url, params) {
+function API (method, url, params) {
   return new Promise((resolve, reject) => {
     service({
       method,
@@ -40,4 +40,4 @@ function connector (method, url, params) {
   })
 }
 
-export default connector
+export default API

@@ -1,8 +1,8 @@
 <template>
   <div>
     <Form ref="search" :model="params" :label-width="80" inline>
-      <FormItem label="联系人" prop="contactPerson">
-        <Input type="text" v-model="params.contactPerson" />
+      <FormItem label="联系人" prop="company">
+        <Input type="text" v-model="params.company" />
       </FormItem>
       <FormItem label="客户名称" prop="name">
         <Input type="text" v-model="params.name" />
@@ -16,8 +16,8 @@
       <FormItem label="所属行业" prop="industry">
         <Input type="text" v-model="params.industry" />
       </FormItem>
-      <FormItem label="成交时间" prop="transactionTime">
-        <Input type="text" v-model="params.transactionTime" />
+      <FormItem label="成交时间" prop="ctime">
+        <DatePicker @on-change="DatePickerChange" type="date" show-week-numbers placeholder="请输入成交时间" style="width: 200px"></DatePicker>
       </FormItem>
       <FormItem class="fr pr20">
         <Button type="primary" @click="handleSubmit()">搜索</Button>
@@ -29,22 +29,43 @@
 </template>
 
 <script>
+import { mapMutations, mapActions } from 'vuex'
 export default {
   data () {
     return {
       params: {
-        contactPerson: '',
+        company: '',
         name: '',
         phone: '',
         area: '',
         industry: '',
-        transactionTime: ''
+        ctime: ''
       }
     }
   },
   methods: {
-    handleSubmit () {
+    ...mapActions([]),
+    ...mapMutations('Client', ['getClient']),
+    async handleSubmit () {
+      const params = await this.filter(this.params)
+      if (params.ctime) {
+        params.ctime = new Date(params.ctime).valueOf()
+      }
+      await this.getClient({ params })
       this.$Message({ content: 'Success!' })
+    },
+    DatePickerChange (time) {
+      this.params.ctime = time
+    },
+    async filter (obj) {
+      const params = {}
+      Object.keys(obj).forEach(key => {
+        if (obj[key]) {
+          console.log(key)
+          params[key] = obj[key]
+        }
+      })
+      return params
     },
     handleReset (name) {
       this.$refs[name].resetFields()

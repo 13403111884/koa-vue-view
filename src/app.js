@@ -3,7 +3,7 @@ import App from './App.vue'
 import { sync } from 'vuex-router-sync'
 import { createRouter } from './router'
 import { createStore } from './store'
-// import titleMixin from './util/title'
+import titleMixin from './util/title'
 import * as filters from './util/filters'
 import mapping from './util/mapping'
 import tools from './util/tools'
@@ -14,7 +14,7 @@ Vue.use(Iview)
 Vue.config.productionTip = false
 
 // 混合处理标题
-// Vue.mixin(titleMixin)
+Vue.mixin(titleMixin)
 
 // 注册全局筛选器
 Object.keys(filters).forEach(key => {

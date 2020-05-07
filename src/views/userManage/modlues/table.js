@@ -2,53 +2,103 @@ export default function (Vue) {
   return [
     {
       title: 'id',
-      key: 'id',
-      render: (h, params) => {
-        return h('div', [
-          h('Icon', {
-            props: {
-              type: 'person'
-            }
-          }),
-          h('strong', params.row.name)
-        ]);
-      }
+      key: 'id'
     },
     {
       title: '联系人',
-      key: 'age'
+      key: 'company'
     },
     {
       title: '客户名称',
-      key: 'address'
+      key: 'name'
     },
     {
       title: '联系电话',
-      key: 'address'
+      key: 'phone'
     },
     {
       title: '所属地区',
-      key: 'address'
+      key: 'area'
+    },
+    {
+      title: '所属行业',
+      key: 'industry'
     },
     {
       title: '成交时间',
-      key: 'address'
+      key: 'cTime',
+      render: (h, ctx) => {
+        const arr = []
+        const row = ctx.row.business
+        if (row.length) {
+          row.forEach((item, index) => {
+            let style = 'line-height: 30px;'
+            if (index) {
+              style = `${style} border-top: 1px #ccc solid;`
+            }
+            arr.push(h('li', { style }, Vue.$getTime(item.ctime, 'YYYY-MM-DD')))
+          })
+        }
+        return h('ul', { class: 'businessStyle' }, arr)
+      }
     },
     {
       title: '已做业务',
-      key: 'address'
+      key: 'product',
+      render: (h, ctx) => {
+        const arr = []
+        const row = ctx.row.business
+        if (row.length) {
+          row.forEach((item, index) => {
+            let style = 'line-height: 30px;'
+            if (index) {
+              style = `${style} border-top: 1px #cccccc solid;`
+            }
+            arr.push(h('li', { style }, item.product))
+          })
+        }
+        return h('ul', { class: 'businessStyle' }, arr)
+      }
     },
     {
       title: '合同额',
-      key: 'address'
+      key: 'amount',
+      render: (h, ctx) => {
+        const arr = []
+        const row = ctx.row.business
+        if (row.length) {
+          row.forEach((item, index) => {
+            let style = 'line-height: 30px;'
+            if (index) {
+              style = `${style} border-top: 1px #cccccc solid;`
+            }
+            arr.push(h('li', { style }, item.amount))
+          })
+        }
+        return h('ul', { class: 'businessStyle' }, arr)
+      }
     },
     {
       title: '利润',
-      key: 'address'
+      key: 'profit',
+      render: (h, ctx) => {
+        const arr = []
+        const row = ctx.row.business
+        if (row.length) {
+          row.forEach((item, index) => {
+            let style = 'line-height: 30px;'
+            if (index) {
+              style = `${style} border-top: 1px #cccccc solid;`
+            }
+            arr.push(h('li', { style }, item.profit))
+          })
+        }
+        return h('ul', { class: 'businessStyle' }, arr)
+      }
     },
     {
       title: '备注',
-      key: 'address'
+      key: 'remarks'
     },
     {
       title: '操作',
@@ -74,7 +124,7 @@ export default function (Vue) {
               props: { type: 'info', size: 'small' },
               style: { marginTop: '5px' },
               on: {
-                click: () => { Vue.business(params.row) }
+                click: () => { Vue.business(params.row.id) }
               }
             },
             '添加业务'
@@ -85,7 +135,7 @@ export default function (Vue) {
               props: { type: 'error', size: 'small' },
               style: { marginTop: '5px', marginBottom: '5px' },
               on: {
-                click: () => { Vue.remove(params.index) }
+                click: () => { Vue.remove(params.row.id) }
               }
             },
             '删除'

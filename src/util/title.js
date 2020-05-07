@@ -1,9 +1,11 @@
 function getTitle (vm) {
-  const { title } = vm.$options
-  if (title) {
-    return typeof title === 'function'
-      ? title.call(vm)
-      : title
+  if (vm.$route && vm.$route.meta) {
+    const { title } = vm.$route.meta
+    if (title) {
+      return typeof title === 'function'
+        ? title.call(vm)
+        : title
+    }
   }
 }
 

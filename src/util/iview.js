@@ -18,6 +18,8 @@ import {
   Submenu,
   Tooltip,
   Poptip,
+  Page,
+  DatePicker,
   Dropdown,
   DropdownMenu,
   DropdownItem,
@@ -41,17 +43,19 @@ export default {
     Vue.component('FormItem', FormItem)
     Vue.component('Row', Row)
     Vue.component('Col', Col)
+    Vue.component('DatePicker', DatePicker)
     Vue.component('Dropdown', Dropdown)
     Vue.component('DropdownMenu', DropdownMenu)
     Vue.component('DropdownItem', DropdownItem)
     Vue.component('Tooltip', Tooltip)
     Vue.component('Poptip', Poptip)
+    Vue.component('Page', Page)
     Vue.component('Menu', Menu)
     Vue.component('Submenu', Submenu)
     Vue.component('MenuItem', MenuItem)
     Vue.component('MenuGroup', MenuGroup)
 
-    const arr = { success: '成功！', warning: '警告！', error: '失败！'}
+    const arr = { success: '成功！', warning: '警告！', error: '失败！' }
     Vue.prototype.$Modal = function (item) {
       const {
         title = '确认窗',

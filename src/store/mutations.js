@@ -1,7 +1,5 @@
+// import API from '@api'
 export default {
-  setUserlist: (state, list) => {
-    state.userList = list
-  },
   setMovielist: (state, list) => {
     state.movieList = list
   },

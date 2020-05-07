@@ -85,16 +85,16 @@ del {
   clear: both;
 }
 
-.loop( @count )when( @count > 0 ){
-  mt@{count}{ margin-top: ( 10px * @count ); }
-  mr@{count}{ margin-right: ( 10px * @count ); }
-  mb@{count}{ margin-bottom: ( 10px * @count ); }
-  ml@{count}{ margin-left: ( 10px * @count ); }
-  pt@{count}{ padding-top: ( 10px * @count ); }
-  mr@{count}{ padding-right: ( 10px * @count ); }
-  mb@{count}{ padding-bottom: ( 10px * @count ); }
-  ml@{count}{ padding-left: ( 10px * @count ); }
+.loop(2);
+
+.loop( @count ) when ( @count > 0 ){
+  .mt@{count}{ margin-top: ( 10px * @count ) };
+  .mr@{count}{ margin-right: ( 10px * @count ) };
+  .mb@{count}{ margin-bottom: ( 10px * @count ) };
+  .ml@{count}{ margin-left: ( 10px * @count ) };
+  .pt@{count}{ padding-top: ( 10px * @count ) };
+  .mr@{count}{ padding-right: ( 10px * @count ) };
+  .mb@{count}{ padding-bottom: ( 10px * @count ) };
+  .ml@{count}{ padding-left: ( 10px * @count ) };
   .loop((@count - 1));
 }
-
-.loop(2);
