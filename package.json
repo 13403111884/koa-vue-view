@@ -2,8 +2,7 @@
   "name": "koa-vue-webpack-ssr",
   "version": "1.0.0",
   "main": "server/index.js",
-  "repository": "https://github.com/lhz960904/vue-ssr-todo.git",
-  "author": "lihaozecq@gmail.com",
+  "author": "",
   "license": "MIT",
   "scripts": {
     "dev": "node server/index",
