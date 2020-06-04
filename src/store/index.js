@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 
 import state from './state'
 import mutations from './mutations'
-import modules from './modules'
 
 import routesList from './../router/routes'
 
@@ -37,18 +36,18 @@ export function createStore () {
     state,
     mutations,
     getters: {
-      userList: state => state.userList,
       movieList: state => state.movieList,
       analysisList: state => state.analysisList,
       Juris: () => routesList,
-      Routers: state => state.routers
+      Routers: state => state.routers,
+      tableData: state => state.tableData
     },
     actions: {
       getMovielist ({ commit }) {
         commit('setMovielist', {})
       },
       getAnalysis ({ commit }) {
-        commit('setAnalysis', {})
+        commit('setAnalysis', {});
       },
       Copy ({ commit }) {
         const input = document.createElement('input')
@@ -78,8 +77,23 @@ export function createStore () {
             reject(err)
           }
         })
+      },
+      async getClient ({ commit }, item = {}) {
+        console.log(3333)
+        return commit('getClient', item)
+      },
+      async addClient ({ commit }, item) {
+        return commit('addClient', item)
+      },
+      async addBusiness({ commit }, item) {
+        return commit('addBusiness', item)
+      },
+      async editClient ({ commit }, item) {
+        return commit('editClient', item)
+      },
+      async deleteClient ({ commit }, item) {
+        return commit('deleteClient', item)
       }
-    },
-    modules
+    }
   })
 }

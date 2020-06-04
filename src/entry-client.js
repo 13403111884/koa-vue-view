@@ -1,6 +1,12 @@
 import Vue from 'vue'
-import { createApp } from './app'
+import { createApp } from './main'
+import ProgressBar from './components/module/ProgressBar'
 
+// 路由切换时，页面数据加载指示器
+const bar = Vue.prototype.$bar = new Vue(ProgressBar).$mount()
+document.body.appendChild(bar.$el)
+
+// 全局混合，当路由组件的参数发生变化时调用`asyncData`
 Vue.mixin({
   beforeRouteUpdate (to, from, next) {
     const { asyncData } = this.$options
@@ -16,11 +22,10 @@ Vue.mixin({
 })
 
 const { app, router, store } = createApp()
-
+// 将服务端渲染的vuex数据，替换到客户端的vuex中
 if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
-
 router.onReady(() => {
   router.beforeResolve((to, from, next) => {
     const matched = router.getMatchedComponents(to)
@@ -32,17 +37,18 @@ router.onReady(() => {
     const activated = matched.filter((c, i) => {
       return diffed || (diffed = (prevMatched[i] !== c))
     })
-
     if (!activated.length) {
       return next()
     }
-    // 这里如果有加载指示器(loading indicator)，就触发
+    // 触发加载指示器
+    bar.start();
     Promise.all(activated.map(c => {
       if (c.asyncData) {
         return c.asyncData({ store, route: to })
       }
     })).then(() => {
-      // 停止加载指示器(loading indicator)
+      // 停止加载指示器
+      bar.finish()
       next()
     }).catch(next)
   })

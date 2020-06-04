@@ -1,20 +1,21 @@
 /* 滚动条 */
 ::-webkit-scrollbar {
   width:9px;
+  height: 9px;
 }
 /* 滚动槽 */
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+  -webkit-box-shadow: #0F84FD;
   border-radius:10px;
 }
 /* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {
   border-radius:10px;
-  background-color:rgba(0,0,0,.3);
-  -webkit-box-shadow:inset006pxrgba(0,0,0,.5);
+  background-color:#0F84FD;
+  -webkit-box-shadow:#0F84FD;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-  background-color:rgba(0,0,0,.1);
+  background-color:#0F84FD;
 }
 
 .userNO{
@@ -85,16 +86,17 @@ del {
   clear: both;
 }
 
-.loop(2);
-
-.loop( @count ) when ( @count > 0 ){
-  .mt@{count}{ margin-top: ( 10px * @count ) };
-  .mr@{count}{ margin-right: ( 10px * @count ) };
-  .mb@{count}{ margin-bottom: ( 10px * @count ) };
-  .ml@{count}{ margin-left: ( 10px * @count ) };
-  .pt@{count}{ padding-top: ( 10px * @count ) };
-  .mr@{count}{ padding-right: ( 10px * @count ) };
-  .mb@{count}{ padding-bottom: ( 10px * @count ) };
-  .ml@{count}{ padding-left: ( 10px * @count ) };
-  .loop((@count - 1));
+.ell{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
+distance = 10 20
+direction = t top, r right, b bottom, l left
+for num in distance
+  for dir in direction
+    .m{dir[0]}{num}
+      margin-{dir[1]}: 1px * num
+    .p{dir[0]}{num}
+      padding-{dir[1]}: 1px * num

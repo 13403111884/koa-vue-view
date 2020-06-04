@@ -1,8 +1,15 @@
 <template>
   <div class="Header">
-    <Tooltip placement="right" content="侧边栏切换">
-      <Icon @click.native="handleCollapsed" :size="32" class="menu-wrapper fl" :type="IconType" />
+    <Tooltip class=" fl" placement="bottom" content="侧边栏切换">
+      <Icon @click.native="handleCollapsed" :size="32" class="menu-wrapper" :type="IconType" />
     </Tooltip>
+    <Breadcrumb class="fl">
+      <BreadcrumbItem
+        :to="$route.matched.length-1 < index ? { name: item.name } : ''"
+        v-for="(item, index) in $route.matched || []"
+        :key="index"
+      >/<Icon :type="item.meta.icon"></Icon> {{ item.meta.title }}</BreadcrumbItem>
+    </Breadcrumb>
     <Poptip class="user fr" placement="bottom-end" width="81">
       <div class="userName">
         <Icon type="md-contact" />用户

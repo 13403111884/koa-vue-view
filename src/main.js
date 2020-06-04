@@ -9,7 +9,7 @@ import mapping from './util/mapping'
 import tools from './util/tools'
 import Iview from './util/iview'
 import 'view-design/dist/styles/iview.css'
-import './assets/css/index.less'
+import '@/assets/styles/index.styl'
 Vue.use(Iview)
 Vue.config.productionTip = false
 

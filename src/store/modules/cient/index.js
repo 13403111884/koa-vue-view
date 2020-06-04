@@ -16,7 +16,7 @@ export default {
     async addClient ({ commit }, item) {
       return commit('addClient', item)
     },
-    async addBusiness ({ commit }, item) {
+    async addBusiness({ commit }, item) {
       return commit('addBusiness', item)
     },
     async editClient ({ commit }, item) {

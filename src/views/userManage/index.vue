@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Search />
+    <Search :params="params" />
 
     <Button type="primary" class="mb10" @click="basicInfo()">添加信息</Button>
 
@@ -33,13 +33,21 @@ export default {
   // 在路由组件上暴露出一个自定义静态函数 asyncData。
   // 注意，由于此函数会在组件实例化之前调用，所以它无法访问 this
   asyncData ({ store }) {
-    store.dispatch('Client/getClient')
+    store.dispatch('getClient')
   },
   components: { Search, BasicInfo, Business },
   data () {
     return {
       showImport: false,
       loading: false,
+      params: {
+        company: '',
+        name: '',
+        phone: '',
+        area: '',
+        industry: '',
+        ctime: ''
+      },
       modalData: {
         basicInfo: {
           type: 'add',
@@ -72,19 +80,41 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('Client', ['tableData'])
+    ...mapGetters(['tableData'])
   },
+  mounted () {},
   methods: {
-    ...mapMutations('Client', [
+    ...mapMutations([
       'getClient',
       'addClient',
       'deleteClient'
     ]),
     pageChange (current) {
-      this.getClient({ current })
+      this.getClientList({ current })
     },
     pageSizeChange (current) {
-      this.getClient({ current })
+      this.getClientList({ current })
+    },
+    async getClientList (current) {
+      const params = await this.filter(this.params)
+      if (params.ctime) {
+        params.ctime = new Date(params.ctime).valueOf()
+      }
+      const item = { params }
+      if (current) {
+        item.current = current
+      }
+      await this.getClient(item)
+    },
+    async filter (obj) {
+      const params = {}
+      Object.keys(obj).forEach(key => {
+        if (obj[key]) {
+          console.log(key)
+          params[key] = obj[key]
+        }
+      })
+      return params
     },
     show (index) {
       this.$Modal({
@@ -96,8 +126,9 @@ export default {
     remove (id) {
       this.$Modal({
         content: '<p>是否要删除此条信息</p>',
-        onOk: () => {
-          this.deleteClient({ query: { id } })
+        onOk: async () => {
+          await this.deleteClient({ query: { id } })
+          await this.getClientList()
           this.$Message()
         },
         onCancel: () => {
@@ -138,5 +169,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+/deep/ .businessStyle{
+  li{
+    line-height: 30px;
+    &:not(:first-child) {
+      border-top: 1px #ccc solid;
+    }
+  }
+}
 </style>

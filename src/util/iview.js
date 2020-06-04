@@ -24,7 +24,13 @@ import {
   DropdownMenu,
   DropdownItem,
   MenuItem,
-  MenuGroup
+  MenuGroup,
+  Select,
+  Option,
+  OptionGroup,
+  BackTop,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'view-design'
 
 export default {
@@ -54,8 +60,14 @@ export default {
     Vue.component('Submenu', Submenu)
     Vue.component('MenuItem', MenuItem)
     Vue.component('MenuGroup', MenuGroup)
+    Vue.component('Select', Select)
+    Vue.component('Option', Option)
+    Vue.component('OptionGroup', OptionGroup)
+    Vue.component('BackTop', BackTop)
+    Vue.component('Breadcrumb', Breadcrumb)
+    Vue.component('BreadcrumbItem', BreadcrumbItem)
 
-    const arr = { success: '成功！', warning: '警告！', error: '失败！' }
+    const arr = { success: '成功！', warning: '警告！', error: '失败！'}
     Vue.prototype.$Modal = function (item) {
       const {
         title = '确认窗',

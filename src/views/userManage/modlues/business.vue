@@ -5,7 +5,7 @@
         <Input v-model="business.params.product" placeholder="请输入业务" />
       </FormItem>
       <FormItem label="成交时间" prop="ctime">
-        <DatePicker @on-change="DatePickerChange" type="date" show-week-numbers placeholder="请输入成交时间" style="width: 200px"></DatePicker>
+        <DatePicker @on-change="DatePickerChange" v-model="ctime" type="date" show-week-numbers placeholder="请输入成交时间" style="width: 200px"></DatePicker>
       </FormItem>
       <FormItem label="合同额" prop="amount">
         <Input type="number" @on-change="keyboard" v-model="business.params.amount" placeholder="请输入合同额" />
@@ -21,16 +21,17 @@
   </Modal>
 </template>
 <script>
-import { mapMutations } from 'vuex'
 function ruleInput (message) {
   return { required: true, message, trigger: 'blur' }
 }
+import { mapMutations } from 'vuex'
 export default {
   props: {
     business: { type: Object, default: () => ({ params: {} }) }
   },
   data () {
     return {
+      ctime: null,
       rules: {
         product: [ruleInput('请填写业务')],
         cTime: [ruleInput('请填写成交时间')],
@@ -40,14 +41,17 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('Client', [
-      'getClient',
+    ...mapMutations([
       'addBusiness'
     ]),
     DatePickerChange (time) {
       this.business.params.ctime = time
     },
     handleSubmit () {
+      if (!this.ctime) {
+        this.$Message({ type: 'error', content: '请选择成交时间' })
+        return
+      }
       this.$refs.business.validate(async valid => {
         if (valid) {
           this.business.loading = true
@@ -55,8 +59,16 @@ export default {
           this.business.params.amount = +this.business.params.amount
           this.business.params.profit = +this.business.params.profit
           await this.addBusiness({ params: this.business.params })
-          this.getClient()
+          this.$parent.getClientList()
           this.$Message()
+          this.ctime = null
+          this.business.params = {
+            companyId: null,
+            product: null,
+            cTime: null,
+            amount: null,
+            profit: null
+          }
           this.business.loading = false
           this.business.show = false
         } else {
@@ -68,7 +80,7 @@ export default {
       const val = String(e.target.value).replace(/[^\d]/g, '')
       if (+val === 0) {
         e.target.value = null
-      } else {
+      } else {  
         e.target.value = +val
       }
     },

@@ -29,43 +29,27 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
 export default {
+  props: {
+    params: { type: Object, default: () => ({
+      company: '',
+      name: '',
+      phone: '',
+      area: '',
+      industry: '',
+      ctime: ''
+    }) }
+  },
   data () {
-    return {
-      params: {
-        company: '',
-        name: '',
-        phone: '',
-        area: '',
-        industry: '',
-        ctime: ''
-      }
-    }
+    return {}
   },
   methods: {
-    ...mapActions([]),
-    ...mapMutations('Client', ['getClient']),
     async handleSubmit () {
-      const params = await this.filter(this.params)
-      if (params.ctime) {
-        params.ctime = new Date(params.ctime).valueOf()
-      }
-      await this.getClient({ params })
-      this.$Message({ content: 'Success!' })
+      this.$parent.getClientList()
+      // this.$Message({ content: 'Success!' })
     },
     DatePickerChange (time) {
       this.params.ctime = time
-    },
-    async filter (obj) {
-      const params = {}
-      Object.keys(obj).forEach(key => {
-        if (obj[key]) {
-          console.log(key)
-          params[key] = obj[key]
-        }
-      })
-      return params
     },
     handleReset (name) {
       this.$refs[name].resetFields()

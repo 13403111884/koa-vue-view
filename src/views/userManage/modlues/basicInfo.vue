@@ -27,10 +27,10 @@
   </Modal>
 </template>
 <script>
-import { mapMutations } from 'vuex'
 function ruleInput (message) {
   return { required: true, message, trigger: 'blur' }
 }
+import { mapMutations } from 'vuex'
 export default {
   props: {
     basicInfo: { type: Object, default: () => ({ params: {} }) }
@@ -47,8 +47,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('Client', [
-      'getClient',
+    ...mapMutations([
       'addClient',
       'editClient'
     ]),
@@ -61,8 +60,16 @@ export default {
           } else {
             await this.editClient({ params: this.basicInfo.params })
           }
-          this.getClient()
+          this.$parent.getClientList()
           this.$Message()
+          this.basicInfo.params = {
+            company: '',
+            name: '',
+            phone: '',
+            area: '',
+            industry: '',
+            remarks: ''
+          }
           this.basicInfo.loading = false
           this.basicInfo.show = false
         } else {
