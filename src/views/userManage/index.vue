@@ -168,13 +168,10 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-/deep/ .businessStyle{
-  li{
-    line-height: 30px;
-    &:not(:first-child) {
-      border-top: 1px #ccc solid;
-    }
-  }
-}
+<style lang="stylus" scoped>
+/deep/ .businessStyle
+  li
+    line-height 30px
+    &:not(:first-child)
+      border-top 1px #ccc solid
 </style>

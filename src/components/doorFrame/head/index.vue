@@ -49,38 +49,29 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.Header {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
-.menu-wrapper {
-  padding: 16px;
-  cursor: pointer;
-}
-.welcomeSpeech {
-  font-size: 12px;
-  margin-right: 20px;
-}
-.user {
-  font-size: 18px;
-  margin-right: 20px;
-  cursor: pointer;
-  &:hover .userName {
-    color: #2d8cf0;
-  }
-  .userName {
-    height: 50px;
-    font-weight: bold;
-    text-align: center;
-  }
-  .menu-content {
-    li {
-      line-height: 36px;
-      border-bottom: 1px solid #cccccc;
-      &:hover {
-        color: #2d8cf0;
-      }
-    }
-  }
-}
+<style lang="stylus" scoped>
+.Header
+  box-shadow 1px 1px 3px rgba(0, 0, 0, 0.3)
+.menu-wrapper 
+  padding 16px
+  cursor pointer
+.welcomeSpeech
+  font-size: 12px
+  margin-right: 20px
+.user
+  font-size 18px
+  margin-right 20px
+  cursor pointer
+  &:hover .userName
+    color #2d8cf0
+  .userName
+    height 50px
+    font-weight bold
+    text-align center
+  .menu-content
+    li
+      line-height 36px
+      border-bottom 1px solid #cccccc
+      &:hover
+        color #2d8cf0
 </style>

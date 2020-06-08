@@ -45,18 +45,15 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.title {
-  display: inline-block;
-  line-height: 30px;
-  height: 30px;
-  color: #515a6e;
-  position: relative;
-  top: -5px;
-}
-a:hover {
-  span {
-    color: #2d8cf0;
-  }
-}
+<style lang="stylus" scoped>
+.title
+  display inline-block
+  line-height 30px
+  height 30px
+  color #515a6e
+  position relative
+  top -5px
+a:hover
+  span
+    color: #2d8cf0
 </style>

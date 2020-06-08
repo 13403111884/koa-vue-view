@@ -56,20 +56,17 @@ export default {
   methods: {}
 }
 </script>
-<style lang="less">
-.side-menu-wrapper {
-  overflow-y: auto;
+<style lang="stylus" scoped>
+.side-menu-wrapper
+  overflow-y auto
   .ivu-tooltip,
-  .drop-menu-span {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-  }
-  .drop-wrapper > .ivu-dropdown {
-    display: block;
-    padding: 10px;
-    margin: 0 auto;
-  }
-}
+  .drop-menu-span
+    display block
+    width 100%
+    text-align center
+    padding 10px 0
+  .drop-wrapper > .ivu-dropdown
+    display block
+    padding 10px
+    margin 0 auto
 </style>

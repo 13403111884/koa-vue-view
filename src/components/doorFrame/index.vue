@@ -65,28 +65,24 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
-/deep/ .ivu-layout-sider-children {
-  overflow-y: auto !important;
-  padding-bottom: 80px;
-}
+<style lang="stylus" scoped>
+/deep/ .ivu-layout-sider-children
+  overflow-y auto !important
+  padding-bottom: 80px
+
 .layout-wrapper,
-.layout-outer {
-  .layout-Menu {
-    height: 100vh;
-  }
-  .layout-header {
-    background: #fff;
-    padding: 0;
-  }
-  .layout-content {
-    background-color: #fff;
-    margin: 6px;
-    padding: 10px 10px 60px;
-    overflow-y: auto;
-    border-radius: 5px;
-    height: calc(100vh - 81px);
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-  }
-}
+.layout-outer
+  .layout-Menu
+    height 100vh
+  .layout-header
+    background #fff
+    padding 0
+  .layout-content
+    background-color #fff
+    margin 6px
+    padding 10px 10px 60px
+    overflow-y auto
+    border-radius 5px
+    height calc(100vh - 81px)
+    box-shadow 0px 0px 6px rgba(0, 0, 0, 0.1)
 </style>

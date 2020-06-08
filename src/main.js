@@ -10,6 +10,8 @@ import tools from './util/tools'
 import Iview from './util/iview'
 import 'view-design/dist/styles/iview.css'
 import '@/assets/styles/index.styl'
+import Drag from '@stroll/drag'
+Vue.use(Drag)
 Vue.use(Iview)
 Vue.config.productionTip = false
 
