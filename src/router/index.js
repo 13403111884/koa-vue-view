@@ -1,8 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { createStore } from './../store'
 
-const routes = createStore().getters.Juris
+import Routes from './routes'
+
+const setJurisdiction = (roles, item) => {
+  if (item.meta && item.meta.roles && item.meta.roles.length) {
+    return roles.some(role => item.meta.roles.includes(role))
+  } else {
+    return true
+  }
+}
+
+const getRouter = (routes, roles) => {
+  if (!routes) return
+  const routerParams = routes.filter(item => {
+    if (setJurisdiction(roles, item)) {
+      if (item.children && item.children.length) {
+        item.children = getRouter(item.children, roles)
+      }
+      return true
+    }
+    return false
+  })
+  Vue.prototype.$nav = routerParams
+  return routerParams
+}
 
 Vue.use(Router)
 
@@ -10,7 +32,7 @@ export function createRouter () {
   return new Router({
     mode: 'history',
     routes: [
-      ...routes,
+      ...getRouter(Routes, []),
       {
         path: '/login',
         name: 'login',

@@ -22,3 +22,10 @@ function pluralize (time, label) {
   }
   return time + label + 's'
 }
+
+export default {
+  install: Vue => {
+    Vue.filter('host', host)
+    Vue.filter('timeAgo', timeAgo)
+  }
+}

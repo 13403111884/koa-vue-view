@@ -19,6 +19,9 @@ export const getDataTime = (time) => {
 }
 
 export default {
-  lookup,
-  getTime
+  install: Vue => {
+    Vue.prototype.$lookup = lookup
+    Vue.prototype.$getTime = getTime
+    Vue.prototype.$getDataTime = getDataTime
+  }
 }

@@ -70,7 +70,7 @@ module.exports = {
 
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('@api', resolve('src/util/request.js'))
+      .set('@api', resolve('src/api/request.js'))
       .set('@components', resolve('src/components'))
       .set('@views', resolve('src/views'))
       .set('@store', resolve('src/store'))

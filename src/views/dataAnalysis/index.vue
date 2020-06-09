@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="dataBar">图标：{{analysisList}}</div>
-    <div v-sDragSort class="div">
+    <div class="div">
       <div class="box1">
         <ul>
           第一级

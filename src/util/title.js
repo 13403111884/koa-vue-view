@@ -26,4 +26,11 @@ const clientTitleMixin = {
     }
   }
 }
-export default process.env.VUE_ENV === 'server' ? serverTitleMixin : clientTitleMixin
+
+const titleMixin = process.env.VUE_ENV === 'server' ? serverTitleMixin : clientTitleMixin
+
+export default {
+  install: Vue => {
+    Vue.mixin(titleMixin)
+  }
+}

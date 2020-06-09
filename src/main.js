@@ -1,33 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 import { sync } from 'vuex-router-sync'
-import { createRouter } from './router'
 import { createStore } from './store'
-import titleMixin from './util/title'
-import * as filters from './util/filters'
-import mapping from './util/mapping'
-import tools from './util/tools'
-import Iview from './util/iview'
+import { createRouter } from './router'
 import 'view-design/dist/styles/iview.css'
 import '@/assets/styles/index.styl'
-import Drag from '@stroll/drag'
-Vue.use(Drag)
-Vue.use(Iview)
+
+const Util = require.context('./util/', false, /\.js$/)
+Util.keys().forEach(key => {
+  Vue.use(Util(key).default)
+})
+
 Vue.config.productionTip = false
-
-// 混合处理标题
-Vue.mixin(titleMixin)
-
-// 注册全局筛选器
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
-
-// 注册全局实方法
-Vue.prototype.$mapping = mapping
-Object.keys(tools).forEach(key => {
-  Vue.prototype[`$${key}`] = tools[key]
-})
 
 export function createApp () {
   const router = createRouter()

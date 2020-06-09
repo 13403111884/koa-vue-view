@@ -2,5 +2,7 @@
 export const arr = []
 
 export default {
-  arr
+  install: Vue => {
+    Vue.prototype.$arr = arr
+  }
 }

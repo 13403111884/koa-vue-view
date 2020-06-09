@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['Juris', 'Routers'])
+    ...mapGetters(['Routers'])
   },
   mounted () {
     this.init()
@@ -44,15 +44,14 @@ export default {
     init () {
       this.getMenuList()
     },
-    ...mapActions(['GenerateRoutes']),
+    ...mapActions([]),
     handleCollapsed () {
       this.collapsed = !this.collapsed
     },
     async getMenuList () {
       this.menuList = []
-      await this.GenerateRoutes()
-      if (!this.Routers && !this.Routers.length) return
-      this.Routers.forEach(item => {
+      if (!this.$nav && !this.$nav.length) return
+      this.$nav.forEach(item => {
         if (item.name && item.meta.show !== false) {
           this.menuList.push(item)
         } else if (item.children && item.children.length) {
