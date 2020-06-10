@@ -4,7 +4,7 @@
 
     <Button type="primary" class="mb10" @click="basicInfo()">添加信息</Button>
 
-    <Table border :columns="columns" :data="tableData.list"></Table>
+    <Table border max-height="490" :columns="columns" :data="tableData.list"></Table>
 
     <div class="mr10 fr">
       <Page

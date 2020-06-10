@@ -1,8 +1,6 @@
 export default {
   movieList: [],
   analysisList: [],
-  roles: [],
-  routers: [],
   apiNameV1: '/client/v1',
   tableData: {
     loading: false,

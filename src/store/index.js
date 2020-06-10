@@ -13,7 +13,6 @@ export function createStore () {
     getters: {
       movieList: state => state.movieList,
       analysisList: state => state.analysisList,
-      Routers: state => state.routers,
       tableData: state => state.tableData
     },
     actions: {

@@ -16,10 +16,6 @@ export default {
       return 'PC'
     }
   },
-  setRouter: (state, routers) => {
-    if (!routers) return
-    state.routers = routers
-  },
   getClient: (state, { params = null, current = null }) => {
     if (current) {
       state.tableData.page.current = current

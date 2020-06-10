@@ -1,23 +1,15 @@
-// const Home = () => import(/* webpackChunkName: "index" */ './../components')
-
+let RouterArr = []
+const Routers = require.context('./../views/', true, /\.router\.js$/)
+Routers.keys().forEach(key => {
+  RouterArr = RouterArr.concat(Routers(key).default)
+})
 export default [
   {
     path: '/',
     redirect: { name: 'dataAnalysis' },
     meta: { title: '', icon: 'md-analytics', roles: [] },
   },
-  {
-    path: '/dataAnalysis',
-    name: 'dataAnalysis',
-    meta: { title: '图表', icon: 'md-analytics', roles: [] },
-    component: () => import(/* webpackChunkName: "index" */ './../views/dataAnalysis')
-  },
-  {
-    path: '/userManage',
-    name: 'userManage',
-    meta: { title: 'user表格', icon: 'md-apps', roles: [] },
-    component: () => import(/* webpackChunkName: "Manage" */ './../views/userManage')
-  },
+  ...RouterArr
   // {
   //   path: '/sumUp',
   //   name: 'sumUp',
