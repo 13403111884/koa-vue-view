@@ -17,6 +17,7 @@
     "dev:start": "cross-env NODE_ENV=production nodemon ./server/ssr.js"
   },
   "dependencies": {
+    "@stroll/tools": "0.0.3",
     "core-js": "^3.6.4",
     "cross-env": "^7.0.2",
     "koa": "^2.11.0",
