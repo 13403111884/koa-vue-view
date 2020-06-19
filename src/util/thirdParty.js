@@ -1,5 +1,4 @@
 import Moment from 'moment'
-import Drag from '@stroll/drag'
 import Tools from '@stroll/tools'
 
 export function getTime (time, format) {
@@ -11,7 +10,6 @@ export const getDataTime = (time) => {
 
 export default {
   install: Vue => {
-    Vue.use(Drag)
     Vue.prototype.$tools = Tools
     Vue.prototype.$getTime = getTime
     Vue.prototype.$getDataTime = getDataTime
