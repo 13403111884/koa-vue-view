@@ -11,35 +11,58 @@ class WebSocketClass {
   }
 
   open (start) {
-    const { fn, params = {} } = start || {}
-    const { send = 'open' } = params
-    this.ws = new WebSocket(this.websocketUrl)
-    this.ws.onopen = e => {
-      this.send(send)
-      this.getMessage(fn, e)
-    }
+    return new Promise((resolve, reject) => {
+      const { send = 'open' } = start || {}
+      this.ws = new WebSocket(this.websocketUrl)
+      if ([0, 1].includes(this.ws.readyState)) {
+        this.ws.onopen = e => {
+          this.send(send).then(res => {
+            resolve({...e, ...res})
+          })
+        }
+      } else {
+        reject({ code: 1, mge: 'WebSocket创建失败', data: this.ws })
+      }
+    })
   }
 
   send (ping) {
-    if (this.ws.readyState === 1) {
-      this.ws.send(ping)
-    }
+    return new Promise((resolve, reject) => {
+      if (this.ws && this.ws.readyState === 1) {
+        this.ws.send(ping)
+        this.getMessage().then(res => {
+          resolve({ code: 0, ...res })
+        })
+      } else {
+        reject({ code: 1, mge: '是否开启链接', data: this.ws })
+      }
+    })
   }
 
-  getMessage (fn) {
-    this.ws.onmessage = e => {
-      fn && fn(e)
-      return e.data
-    }
+  getMessage () {
+    return new Promise((resolve, reject) => {
+      if (this.ws && this.ws.readyState === 3) {
+        reject({ code: 1, mge: '是否开启链接', data: this.ws })
+      } else {
+        this.ws.onmessage = e => {
+          resolve({ code: 0, e })
+        }
+      }
+    })
   }
 
   close (close) {
-    if (!this.ws || this.ws.readyState > 1) {
-      console.log('连接已经关闭')
-      return
-    }
-    this.ws.send(close || 'close')
-    this.ws.close()
+    return new Promise((resolve, reject) => {
+      try {
+        if (this.ws && this.ws.readyState < 2) {
+          this.ws.send(close || 'close')
+          this.ws.close()
+        }
+        resolve({ code: 0, mge: '连接已经关闭' })
+      } catch (error) {
+        reject({ code: 1, error })
+      }
+    })
   }
 
   // readyState 状态
@@ -51,37 +74,3 @@ class WebSocketClass {
 }
 
 export default WebSocketClass
-
-// koa 示例
-
-// const Koa = require('koa');
-// const Router = require('koa-router');
-// const koaBody = require('koa-body');
-// const websockify = require('koa-websocket')
-// const app = websockify(new Koa())
-
-// const { mkdirsSync } = require('./utils/dir')
-// const router = new Router()
-// app.use(koaBody())
-
-// app.ws.use((ctx, next) => {
-//   return next(ctx)
-// })
-
-// router.all('/websocket', async (ctx, next) => {
-//   ctx.websocket.on('message', msg => {
-//     setInterval(function() {
-//       ctx.websocket.send(`前端发过来的数据: ${msg}`)
-//     }, 1000)
-//   })
-//   ctx.websocket.on('close', () => {
-//     console.log('前端关闭了websocket')
-//   })
-// })
-
-// app.ws.use(router.routes())
-// app.use(router.allowedMethods())
-// app.use(serve(__dirname + '/static'))
-// app.listen(9000, () => {
-//   console.log('服务9000端口已经启动了')
-// })
