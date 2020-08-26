@@ -14,7 +14,7 @@
     "dev": "concurrently \"npm run serve\" \"npm run dev:serve\" ",
     "dev:serve": "cross-env WEBPACK_TARGET=node node ./server/ssr.js",
     "start": "cross-env NODE_ENV=production pm2 start ./server/ssr.js",
-    "dev:start": "cross-env NODE_ENV=production nodemon ./server/ssr.js"
+    "dev:start": "cross-env WEBPACK_TARGET=node nodemon ./server/ssr.js"
   },
   "dependencies": {
     "core-js": "^3.6.4",
