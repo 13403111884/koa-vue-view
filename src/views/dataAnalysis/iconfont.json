@@ -1,0 +1,93 @@
+{
+  "id": "2029799",
+  "name": "视频",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "16802024",
+      "name": "静音",
+      "font_class": "jingyin",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "8341757",
+      "name": "箭头2_右",
+      "font_class": "jiantou_you",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "8341760",
+      "name": "箭头2_左",
+      "font_class": "jiantou_zuo",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "2154945",
+      "name": "播放器-播放_44",
+      "font_class": "bofangqi-bofang",
+      "unicode": "e6a4",
+      "unicode_decimal": 59044
+    },
+    {
+      "icon_id": "2154946",
+      "name": "播放器-暂停_44",
+      "font_class": "bofangqi-zanting",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "2154996",
+      "name": "播放器-播放（小电视）",
+      "font_class": "bofangqi-bofangxiaodianshi",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "3216202",
+      "name": "小音量",
+      "font_class": "icon--",
+      "unicode": "e771",
+      "unicode_decimal": 59249
+    },
+    {
+      "icon_id": "3216203",
+      "name": "中音量",
+      "font_class": "icon--1",
+      "unicode": "e772",
+      "unicode_decimal": 59250
+    },
+    {
+      "icon_id": "3216209",
+      "name": "大音量",
+      "font_class": "icon--2",
+      "unicode": "e776",
+      "unicode_decimal": 59254
+    },
+    {
+      "icon_id": "9623955",
+      "name": "全屏",
+      "font_class": "quanping",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    },
+    {
+      "icon_id": "11875459",
+      "name": "小窗口",
+      "font_class": "xiaochuangkou",
+      "unicode": "e75e",
+      "unicode_decimal": 59230
+    },
+    {
+      "icon_id": "13057412",
+      "name": "取消全屏",
+      "font_class": "quxiaoquanping",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    }
+  ]
+}

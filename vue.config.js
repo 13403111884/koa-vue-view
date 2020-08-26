@@ -25,7 +25,7 @@ module.exports = {
         changeOrigin: true
       },
       '^/file': {
-        target: 'http://localhost:9000',
+        target: 'http://localhost:7000',
         changeOrigin: true
       },
       '^/business': {
@@ -89,7 +89,7 @@ module.exports = {
     },
     webpackBundleAnalyzer: {
       openAnalyzer: false,
-      analyzerPort: '9009'
+      // analyzerPort: '9009'
     }
   }
 }
